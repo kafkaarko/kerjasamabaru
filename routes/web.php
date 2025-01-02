@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\GudangController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -35,3 +37,7 @@ Route::prefix('kelola-akun')->name('kelola_akun.')->group(function () {
     Route::patch('/ubah/{id}', [UserController::class, 'update'])->name('ubah.proses');
     Route::delete('/hapus/{id}', [UserController::class, 'destroy'])->name('hapus');
 });
+
+Route::resource('barang', BarangController::class);
+Route::resource('gudang', GudangController::class);
+Route::resource('landing', GudangController::class);

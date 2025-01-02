@@ -17,17 +17,23 @@
                 ⚙ PT Cibtira ⚙
             </div>
             <div class="flex space-x-4">
-                @if (Auth::check())
-                    <a href="{{ route('landing_page') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Home</a>
-                    <a href="{{ route('kelola_akun.data') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Akun</a>
-                    <a href="{{ route('logout') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Logout</a>
-                @endif
+                
+                
+                
+                <a href="{{ route('landing_page') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Home</a>
+                
+                <a href="{{ route('kelola_akun.data') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Akun</a>
+                <a href="{{ route('barang.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Barang</a>
+                <a href="{{ route('gudang.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Gudang</a>
+                
+                <a href="{{ route('logout') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Logout</a>
+
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <div class="p-6 bg-gray-100">
+    <div class="p-6 bg-gray-100 min-h-screen">
         @yield('content')
     </div>
 

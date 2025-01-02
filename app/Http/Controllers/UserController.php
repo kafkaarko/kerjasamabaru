@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\gudang;
+use App\Models\kategori_item;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
@@ -40,7 +42,9 @@ class UserController extends Controller
     }
     public function tampilLanding()
     {
-        return view('landing_page');
+        $gudang = gudang::all();
+        $barang = kategori_item::all();
+        return view('landing_page',compact('gudang','barang'));
     }
     public function index(Request $request)
     {

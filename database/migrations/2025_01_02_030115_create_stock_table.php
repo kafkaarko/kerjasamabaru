@@ -21,20 +21,22 @@ return new class extends Migration
         Schema::create('kategori_item', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('type');
+            $table->string('category');
+            $table->string('size');
+            $table->string('color');
             $table->timestamps();
         });
         
         Schema::create('stock', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('category');
-            $table->string('size');
-            $table->string('color');
             $table->unsignedBigInteger('gudang_id');
+            $table->unsignedBigInteger('kategori_id');
             $table->integer('quantity');
             $table->timestamps();
         
             $table->foreign('gudang_id')->references('id')->on('gudang')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
         });
     }
 
