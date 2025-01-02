@@ -17,24 +17,28 @@ return new class extends Migration
             $table->text('location')->nullable();
             $table->timestamps();
         });
-        
+
         Schema::create('kategori_item', function (Blueprint $table) {
             $table->id();
+            $table->enum('type', ['Running','Futsal','Sneakers','Canvas']);
+            $table->enum('category', ['Olahraga', 'Santai']);
+            $table->integer('size');
+            $table->enum('color', ['Black', 'White', 'Blue', 'Brown']);
             $table->string('name');
             $table->timestamps();
         });
-        
+
         Schema::create('stock', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->string('category');
-            $table->string('size');
-            $table->string('color');
+
             $table->unsignedBigInteger('gudang_id');
+            $table->unsignedBigInteger('kategori_id');
             $table->integer('quantity');
             $table->timestamps();
-        
+
             $table->foreign('gudang_id')->references('id')->on('gudang')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id')->on('kategori_item')->onDelete('cascade');
+
         });
     }
 
