@@ -1,9 +1,18 @@
 @extends('templates.app')
 @section('content')
-<section class="bg-indigo-700 text-white text-center py-16">
-    <h1 class="text-4xl font-bold mb-4">Shoes</h1>
-    <p class="text-xl mb-8">Manage and track your warehouse inventory with ease.</p>
-    <a href="#  " class="bg-white text-indigo-700 px-6 py-3 rounded-lg shadow-lg hover:bg-indigo-100">Warehouse</a>
+<section class="bg-indigo-700 text-white  justify-center flex items-center text-center py-16 grid-cols-2 gap-5" >
+    @foreach ($barang as $item)
+        
+    <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+        <p>{{ Auth::user()->name }}</p>
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $item->name }} </h5>
+        <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->type }}</p>
+        <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->category }}</p>
+        <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->size }}</p>
+        <p class="font-normal text-gray-700 dark:text-gray-400">{{ $item->color }}</p>
+    </a>
+    @endforeach
+        
 </section>
 
 <!-- Features Section -->
