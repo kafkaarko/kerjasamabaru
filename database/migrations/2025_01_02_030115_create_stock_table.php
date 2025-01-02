@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('color');
             $table->timestamps();
         });
-        
         Schema::create('stock', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('gudang_id');
@@ -36,8 +35,9 @@ return new class extends Migration
             $table->timestamps();
         
             $table->foreign('gudang_id')->references('id')->on('gudang')->onDelete('cascade');
-            $table->foreign('kategori_id')->references('id')->on('kategori')->onDelete('cascade');
+            $table->foreign('kategori_id')->references('id')->on('kategori_item')->onDelete('cascade');
         });
+        
     }
 
     /**
