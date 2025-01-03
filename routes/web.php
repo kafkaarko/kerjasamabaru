@@ -26,8 +26,8 @@ Route::get('/login', function () {
 })->name('login_form');
 
 
+Route::get('/dashboard', [UserController::class, 'tampilLanding'])->name('dashboard');
 Route::middleware('IsLogin')->group(function () {
-    Route::get('/dashboard', [UserController::class, 'tampilLanding'])->name('dashboard');
     Route::post('/login', [UserController::class, 'LoginAuth'])->name('login');
     Route::get('/loginOut', [UserController::class, 'tampilLogin'])->name('loginOut');
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
