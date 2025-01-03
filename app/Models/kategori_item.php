@@ -33,6 +33,17 @@ class kategori_item extends Model
     {
         return $this->hasMany(gudang::class,    'barang_id');
     }
+
+    // public function stock()
+    // {
+    //     return $this->hasMany(stock::class, 'item_id');
+    // }
+    // Pastikan ini sesuai dengan nama tabel
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class, 'kategori_id');
+    }
     
 
     // Relasi dengan tabel 'items'

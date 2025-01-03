@@ -9,39 +9,27 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-    <!-- Navbar -->
-    <nav class="bg-blue-800 p-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center text-white">
-            <div class="text-xl font-semibold">
-                ⚙ PT Cibtira ⚙
-            </div>
-            <div class="flex space-x-4">
-                
-                
-                
-                <a href="{{ route('landing_page') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Home</a>
-                
-                <a href="{{ route('kelola_akun.data') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Akun</a>
-                <a href="{{ route('barang.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Barang</a>
-                <a href="{{ route('gudang.index') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Kelola Gudang</a>
-                
-                <a href="{{ route('logout') }}" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded">Logout</a>
-
-            </div>
+<body class="flex h-screen bg-gray-100">
+    <!-- Sidebar -->
+    <div class="w-64 bg-blue-800 text-white flex flex-col">
+        <div class="p-4 text-center text-xl font-semibold border-b border-blue-700">
+            ⚙ PT Cibtira ⚙
         </div>
-    </nav>
-
-    <!-- Main Content -->
-    <div class="p-6 bg-gray-100 min-h-screen">
-        @yield('content')
+        <nav class="flex-1 p-4 space-y-2">
+            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Home</a>
+            <a href="{{ route('kelola_akun.data') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Kelola Akun</a>
+            <a href="{{ route('barang.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Kelola Barang</a>
+            <a href="{{ route('gudang.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Kelola Gudang</a>
+            <a href="{{ route('logout') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Logout</a>
+        </nav>
+        <footer class="p-4 text-center text-xs border-t border-blue-700">
+            &copy; 2025 PT Cibedug 3 Sejatehra
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-indigo-600 text-white py-8">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <p>&copy; 2025 PT Cibedug 3 Sejatehra. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Main Content -->
+    <div class="flex-1 p-6">
+        @yield('content')
+    </div>
 </body>
 </html>
