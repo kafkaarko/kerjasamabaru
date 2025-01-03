@@ -16,14 +16,11 @@ class IsLogin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Jika login berhasil, alihkan ke landing page atau halaman utama
-            return redirect()->intended('/dashboard');
-        }       
-    
-        // Jika login gagal, alihkan kembali ke form login dengan pesan error
-        return redirect()->route('login_form')->withErrors(['email' => 'Login gagal!']);
+        if(Auth::check())
+        {
+            return $next($request);
+        }else{
+            return redirect()->route('login')->with('canAccess','Anda harus login terlebih dahulu');
+        }
     }
 }

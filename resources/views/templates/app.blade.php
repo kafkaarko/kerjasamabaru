@@ -16,11 +16,17 @@
             ⚙ PT Cibtira ⚙
         </div>
         <nav class="flex-1 p-4 space-y-2">
-            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Home</a>
+            @if (Auth::check())
+            @if (Auth::user()->role == 'Admin')
             <a href="{{ route('kelola_akun.data') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Kelola Akun</a>
             <a href="{{ route('barang.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Kelola Barang</a>
             <a href="{{ route('gudang.index') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Kelola Gudang</a>
+                
+            @endif
+            <a href="{{ route('dashboard') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Home</a>
             <a href="{{ route('logout') }}" class="block px-4 py-2 text-gray-300 hover:bg-blue-700 hover:text-white rounded">Logout</a>
+                
+            @endif
         </nav>
         <footer class="p-4 text-center text-xs border-t border-blue-700">
             &copy; 2025 PT Cibedug 3 Sejatehra
