@@ -27,9 +27,11 @@ class UserController extends Controller
             // attempt 2. Memastikan enkripsi
             // attempt 3. Memasukan kedalam history
             // jika berhasil, redirect ke landing page
-            return redirect()->route('landing_page');
+            return redirect()->route('/dashboard');
         } else {
-            return redirect()->back()->with('failed', 'tetiasa login coba dei');
+            return redirect()->route('login_form')->withErrors([
+                'email' => 'Email atau password salah!',
+            ]);
         }
     }
     public function logout(){
@@ -44,7 +46,7 @@ class UserController extends Controller
     {
         $gudang = gudang::all();
         $barang = kategori_item::all();
-        return view('landing_page',compact('gudang','barang'));
+        return view('dashboard',compact('gudang','barang'));
     }
     public function index(Request $request)
     {
@@ -142,5 +144,9 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('kelola_akun.data')->with('success', 'Akun berhasil dihapus.');
+    }
+    public function Selamat()
+    {
+        return view('landing_page');
     }
 }

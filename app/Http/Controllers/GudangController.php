@@ -12,19 +12,21 @@ class GudangController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-{
-    $gudang = gudang::with('barang')->get(); // Get the related barang for each gudang
-    return view('gudang.index', compact('gudang'));
-}
+    {
+        $gudang = gudang::with('barang')->get(); // Get the related barang for each gudang
+        return view('gudang.index', compact('gudang'));
+    }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
-        $barang = kategori_item::with('gudang')->get();
-        return view('gudang.create',compact('barang'));
+        // Ambil semua kategori item beserta relasi stock
+        $barang = kategori_item::with('stock')->get();
+
+        // Return ke view dengan data $barang
+        return view('gudang.create', compact('barang'));
     }
 
     /**
@@ -47,9 +49,9 @@ class GudangController extends Controller
             'stock' => $request->stock,
         ]);
 
-        if($gudang){
+        if ($gudang) {
             return redirect()->route('gudang.index')->with('success', 'Data berhasil ditambahkan');
-        }else{
+        } else {
             return redirect()->route('gudang.create')->with('error', 'Data gagal ditambahkan');
         }
     }
