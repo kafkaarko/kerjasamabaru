@@ -27,7 +27,7 @@ class UserController extends Controller
             // attempt 2. Memastikan enkripsi
             // attempt 3. Memasukan kedalam history
             // jika berhasil, redirect ke landing page
-            return redirect()->route('/dashboard');
+            return redirect()->route('dashboard');
         } else {
             return redirect()->route('login_form')->withErrors([
                 'email' => 'Email atau password salah!',
@@ -43,11 +43,13 @@ class UserController extends Controller
         return view('login');
     }
     public function tampilLanding()
-    {
-        $gudang = gudang::all();
-        $barang = kategori_item::all();
-        return view('dashboard',compact('gudang','barang'));
-    }
+{
+    $barang = kategori_item::all(); // Semua barang
+    $gudang = gudang::all()->groupBy('barang_id'); // Grup data gudang berdasarkan barang_id
+    
+    return view('dashboard', compact('gudang', 'barang'));
+}
+
     public function index(Request $request)
     {
         $search = $request->input('cari');
