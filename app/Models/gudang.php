@@ -11,14 +11,21 @@ class gudang extends Model
 {
     use HasFactory;
 
+    protected $table = 'gudang';
+
     protected $fillable = [
-        'name', 'location',
+        'name', 'location' ,'stock','barang_id',
     ];
 
     // Relasi dengan tabel 'items'
     public function items()
     {
         return $this->hasMany(stock::class);
+    }
+
+    public function barang()
+    {
+        return $this->belongsTo(kategori_item::class , 'barang_id',);
     }
 }
 

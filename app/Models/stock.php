@@ -1,30 +1,23 @@
 <?php
 
 // app/Models/Item.php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class stock extends Model
+class Stock extends Model
 {
     use HasFactory;
+    protected $table = 'stocks'; // Ubah dari 'stock' menjadi 'stocks'
 
-    protected $fillable = [
-        'type', 'category', 'size', 'color', 'warehouse_id', 'quantity',
-    ];
-
-    // Relasi dengan tabel 'warehouse'
-    public function warehouse()
+    public function kategori_item()
     {
-        return $this->belongsTo(gudang::class);
+        return $this->belongsTo(Kategori_Item::class, 'kategori_id');
     }
 
-    // Relasi dengan tabel 'item_categories'
-    public function itemCategory()
+    public function gudang()
     {
-        return $this->belongsTo(kategori_item::class, 'category');
+        return $this->belongsTo(Gudang::class, 'gudang_id');
     }
 }
-
